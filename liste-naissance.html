@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notre liste de naissance</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --warm-white: #FFFDF9;
+    --sage: #8B9E7E;
+    --sage-light: #EEF2EB;
+    --sage-dark: #5C6E51;
+    --text: #2C2825;
+    --text-muted: #7A746E;
+    --text-light: #ACA49C;
+    --border: rgba(44,40,37,0.1);
+    --border-strong: rgba(44,40,37,0.2);
+    --violet-light: #EEEDFE;
+    --violet-dark: #3C3489;
+    --teal-light: #E1F5EE;
+    --teal-dark: #085041;
+    --blue-light: #E6F1FB;
+    --blue-dark: #0C447C;
+    --orange-light: #FEF3E8;
+    --orange-dark: #7A4E1E;
+    --rose-light: #FBEAF0;
+    --rose-dark: #72243E;
+    --green-light: #EAF3DE;
+    --green-dark: #27500A;
+    --gray-light: #F1EFE8;
+    --gray-dark: #444441;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; }
+
+  .page-header { background: var(--warm-white); border-bottom: 1px solid var(--border); padding: 3rem 2rem 2.5rem; text-align: center; }
+  .header-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); margin-bottom: 1rem; }
+  .header-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.15; margin-bottom: 0.5rem; }
+  .header-title em { font-style: italic; color: var(--sage-dark); }
+  .header-sub { font-size: 14px; color: var(--text-muted); font-weight: 300; margin-top: 0.5rem; }
+
+  .container { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+  .intro-block { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; margin-bottom: 1rem; font-size: 15px; line-height: 1.85; color: var(--text); }
+  .intro-block p { margin-bottom: 0.9rem; }
+  .intro-block p:last-child { margin-bottom: 0; }
+  .intro-block strong { font-weight: 500; }
+  .intro-block em { font-style: italic; color: var(--text-muted); font-size: 14px; }
+  .values-list { list-style: none; margin: 0.75rem 0 0.9rem; display: flex; flex-direction: column; gap: 10px; }
+  .values-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+  .values-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--sage); flex-shrink: 0; margin-top: 8px; }
+
+  .feature-note { background: var(--blue-light); border: 1px solid rgba(55,138,221,0.2); border-radius: 10px; padding: 1rem 1.25rem; font-size: 13px; color: var(--blue-dark); line-height: 1.65; margin-bottom: 2rem; }
+
+  .espece-card { background: var(--warm-white); border: 1px solid var(--border); border-top: 3px solid var(--sage); border-radius: 14px; padding: 1.5rem 1.75rem; margin-bottom: 2rem; }
+  .espece-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--sage-dark); margin-bottom: 0.5rem; }
+  .espece-body { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+  .section { margin-bottom: 2.5rem; }
+  .section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+  .section-label-text { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+  .section-label-line { flex: 1; height: 1px; background: var(--border); }
+
+  .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+  .item { background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; transition: border-color 0.2s, box-shadow 0.2s; }
+  .item:hover { border-color: var(--border-strong); box-shadow: 0 2px 12px rgba(44,40,37,0.06); }
+  .item-top { display: flex; align-items: flex-start; gap: 10px; }
+  .item-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .item-text { flex: 1; }
+  .item-name { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.35; }
+  .item-sub { font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.45; }
+  .item-note { font-size: 12px; color: var(--sage-dark); background: var(--sage-light); border-radius: 8px; padding: 8px 12px; line-height: 1.55; font-style: italic; }
+  .item-footer { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 4px; }
+
+  .btn-interested { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; color: var(--sage-dark); background: var(--sage-light); border: 1px solid rgba(91,110,81,0.2); border-radius: 20px; padding: 4px 12px; cursor: pointer; transition: background 0.15s; font-family: 'DM Sans', sans-serif; white-space: nowrap; }
+  .btn-interested:hover { background: #dce8d5; border-color: rgba(91,110,81,0.35); }
+  .counter-pill { font-size: 11px; color: var(--text-light); white-space: nowrap; transition: color 0.2s; }
+  .counter-pill.has-people { color: var(--sage-dark); font-weight: 500; }
+
+  /* Tooltip biberon — desktop uniquement */
+  .tooltip-wrap { position: relative; display: inline-flex; align-items: center; }
+  .tooltip-box { display: none; position: absolute; bottom: calc(100% + 10px); left: 0; width: 320px; background: var(--warm-white); border: 1px solid var(--border-strong); border-radius: 12px; padding: 1rem 1.1rem; box-shadow: 0 4px 24px rgba(44,40,37,0.12); z-index: 50; pointer-events: none; }
+  .tooltip-wrap:hover .tooltip-box { display: block; }
+  .tooltip-title { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; }
+  .tooltip-body { font-size: 12px; color: var(--text-muted); line-height: 1.65; }
+  .tooltip-body ol { padding-left: 1rem; margin: 0.4rem 0; }
+  .tooltip-body ol li { margin-bottom: 3px; }
+  .tooltip-body strong { font-weight: 500; color: var(--text); }
+  .tooltip-arrow { position: absolute; bottom: -6px; left: 20px; width: 10px; height: 10px; background: var(--warm-white); border-right: 1px solid var(--border-strong); border-bottom: 1px solid var(--border-strong); transform: rotate(45deg); }
+
+  .musique-card { background: var(--warm-white); border: 1px solid var(--border); border-left: 3px solid #7F77DD; border-radius: 0 12px 12px 0; padding: 1.25rem 1.5rem; }
+  .musique-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--violet-dark); margin-bottom: 0.4rem; }
+  .musique-body { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+  .musique-footer { margin-top: 10px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+
+  .i-violet { background: var(--violet-light); color: var(--violet-dark); }
+  .i-teal   { background: var(--teal-light);   color: var(--teal-dark);   }
+  .i-blue   { background: var(--blue-light);   color: var(--blue-dark);   }
+  .i-orange { background: var(--orange-light); color: var(--orange-dark); }
+  .i-rose   { background: var(--rose-light);   color: var(--rose-dark);   }
+  .i-green  { background: var(--green-light);  color: var(--green-dark);  }
+  .i-gray   { background: var(--gray-light);   color: var(--gray-dark);   }
+
+  /* Modal */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(44,40,37,0.45); z-index: 100; align-items: center; justify-content: center; padding: 1rem; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--warm-white); border-radius: 16px; padding: 2rem; width: 100%; max-width: 420px; max-height: 90vh; overflow-y: auto; }
+  .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; margin-bottom: 0.3rem; color: var(--text); }
+  .modal-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.5; }
+  .participants-section-title { font-size: 12px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .participants-list { margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 8px; }
+  .participant-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: var(--sage-light); border-radius: 8px; font-size: 13px; }
+  .participant-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--sage); color: white; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; flex-shrink: 0; }
+  .participant-name { font-weight: 500; font-size: 13px; }
+  .participant-contact { font-size: 11px; color: var(--text-muted); }
+  .participant-empty { font-size: 13px; color: var(--text-light); font-style: italic; padding: 0.25rem 0; }
+  .btn-delete-participant { background: none; border: none; color: var(--text-light); font-size: 12px; cursor: pointer; padding: 2px 6px; border-radius: 4px; line-height: 1; flex-shrink: 0; }
+  .btn-delete-participant:hover { background: var(--rose-light); color: var(--rose-dark); }
+  .form-group { margin-bottom: 1rem; }
+  .form-label { display: block; font-size: 12px; font-weight: 500; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .form-input { width: 100%; padding: 10px 14px; border: 1px solid var(--border-strong); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; background: var(--cream); color: var(--text); transition: border-color 0.2s; }
+  .form-input:focus { outline: none; border-color: var(--sage); }
+  .form-hint { font-size: 11px; color: var(--text-light); margin-top: 4px; }
+  .modal-actions { display: flex; gap: 8px; margin-top: 1.5rem; }
+  .btn-primary { flex: 1; padding: 11px; background: var(--sage-dark); color: white; border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.15s; }
+  .btn-primary:hover { background: #4a5941; }
+  .btn-secondary { padding: 11px 16px; background: transparent; color: var(--text-muted); border: 1px solid var(--border-strong); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; cursor: pointer; }
+  .status-msg { font-size: 12px; margin-top: 0.75rem; min-height: 16px; text-align: center; color: var(--sage-dark); }
+
+  @media (max-width: 500px) {
+    .items-grid { grid-template-columns: 1fr; }
+    .page-header { padding: 2rem 1.25rem 1.75rem; }
+    .container { padding: 1.5rem 1rem 3rem; }
+    .tooltip-box { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="header-eyebrow">Bienvenue dans notre famille</div>
+  <h1 class="header-title">Notre liste de<br><em>naissance</em></h1>
+  <p class="header-sub">Avec tout notre amour &amp; notre gratitude</p>
+</header>
+
+<div class="container">
+
+  <div class="intro-block">
+    <p>La venue de notre bébé est une joie immense que nous avons hâte de partager avec vous.</p>
+    <p>Vos présences à nos côtés sont le cadeau le plus précieux — <strong>aucun présent n'est attendu ni nécessaire.</strong> Nombreux d'entre vous nous ont cependant demandé si nous avions des besoins spécifiques : voici une liste indicative pour vous guider si vous le souhaitez.</p>
+    <p>Deux choses nous tiennent particulièrement à cœur :</p>
+    <ul class="values-list">
+      <li>Nous souhaitons que l'argent dépensé soutienne l'artisanat local et l'économie française ou européenne — et non des dividendes délocalisés ni du travail dans des pays sous régime autoritaire. Autant que possible, merci d'éviter les produits fabriqués en Chine.</li>
+      <li>Nous privilégions les matières biologiques et naturelles, et évitons autant que possible les microplastiques et les matières synthétiques au contact de la peau de bébé. Si vous avez un doute sur un produit, n'hésitez pas à nous écrire !</li>
+    </ul>
+    <p><em>Notre maison est assez petite — si vous souhaitez vous organiser à plusieurs pour offrir un meuble ou un grand cadeau, écrivez-nous d'abord pour vous assurer que ça nous convient.</em></p>
+    <p><em>Et bien sûr, si l'envie vous prend de nous faire une surprise, elle sera toujours accueillie avec beaucoup d'amour !</em></p>
+  </div>
+
+  <div class="feature-note">
+    Sur chaque cadeau, cliquez sur <strong>« Je suis intéressé(e) »</strong> pour laisser votre prénom et contact. Vous verrez alors qui d'autre est déjà intéressé pour vous organiser ensemble — et le compteur vous indique combien de personnes ont déjà manifesté leur intérêt.
+  </div>
+
+  <div class="espece-card">
+    <div class="espece-title">Cadeau en espèces</div>
+    <div class="espece-body">
+      Un cadeau en espèces est le bienvenu — nous saurons très bien quoi en faire !<br>
+      Si vous souhaitez nous faire un virement, écrivez-nous et nous vous enverrons notre RIB avec plaisir.
+    </div>
+  </div>
+
+  <!-- CHAMBRE & COUCHAGE -->
+  <div class="section">
+    <div class="section-label"><span class="section-label-text">Chambre &amp; couchage</span><div class="section-label-line"></div></div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-violet">🛏</div><div class="item-text"><div class="item-name">Lit cododo</div><div class="item-sub">Pour les nuits proches des parents</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('lit-cododo','Lit cododo')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-lit-cododo">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-violet">🧸</div><div class="item-text"><div class="item-name">Réducteur de lit</div><div class="item-sub">Sécurité &amp; confort</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('reducteur-lit','Réducteur de lit')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-reducteur-lit">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-violet">🪺</div><div class="item-text"><div class="item-name">Lit d'ange</div><div class="item-sub">Pour les déplacements et sorties</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('lit-ange','Lit d\'ange')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-lit-ange">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-violet">🌬️</div><div class="item-text"><div class="item-name">Chancelière</div><div class="item-sub">Pour garder bébé au chaud en sortie</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('chanceliere','Chancelière')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-chanceliere">0 personne</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÉVEIL & JEU -->
+  <div class="section">
+    <div class="section-label"><span class="section-label-text">Éveil &amp; jeu</span><div class="section-label-line"></div></div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-blue">🪐</div><div class="item-text"><div class="item-name">Mobile éducatif</div><div class="item-sub">Idéalement avec les planètes — papa et maman veulent déjà leur apprendre les noms !</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('mobile','Mobile éducatif')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-mobile">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-blue">🎨</div><div class="item-text"><div class="item-name">Tapis d'éveil</div><div class="item-sub">Motricité &amp; stimulation · 0–6 mois</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('tapis-eveil','Tapis d\'éveil')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-tapis-eveil">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-blue">🔔</div><div class="item-text"><div class="item-name">Hochet</div><div class="item-sub">Premier jouet sensoriel</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('hochet','Hochet')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-hochet">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-blue">📖</div><div class="item-text"><div class="item-name">Livres noir &amp; blanc</div><div class="item-sub">Stimulation visuelle précoce · 1–2 exemplaires</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('livres-nb','Livres noir & blanc')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-livres-nb">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-blue">📚</div><div class="item-text"><div class="item-name">Livres à textures</div><div class="item-sub">Éveil tactile · 2–3 exemplaires</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('livres-textures','Livres à textures')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-livres-textures">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-blue">🧸</div><div class="item-text"><div class="item-name">Doudou</div><div class="item-sub">Idéalement en 2 ou 3 exemplaires identiques — pour avoir une réserve quand le premier sera perdu !</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('doudou','Doudou')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-doudou">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-blue">🗃️</div><div class="item-text"><div class="item-name">Coffre en bois</div><div class="item-sub">Rangement jouets &amp; livres</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('coffre-bois','Coffre en bois')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-coffre-bois">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-blue">🎵</div><div class="item-text"><div class="item-name">Boîte à musique</div><div class="item-sub">Pour bébé — on adore l'idée d'endormir bébé avec une mélodie douce !</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('boite-musique','Boîte à musique')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-boite-musique">0 personne</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PORTAGE -->
+  <div class="section">
+    <div class="section-label"><span class="section-label-text">Portage &amp; mobilité</span><div class="section-label-line"></div></div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-rose">🎀</div><div class="item-text"><div class="item-name">Écharpe de portage</div><div class="item-sub">Portage physiologique dès la naissance</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('echarpe','Écharpe de portage')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-echarpe">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-rose">🦺</div><div class="item-text"><div class="item-name">Porte-bébé ergonomique</div><div class="item-sub">Portage structuré</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('porte-bebe','Porte-bébé ergonomique')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-porte-bebe">0 personne</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HYGIÈNE -->
+  <div class="section">
+    <div class="section-label"><span class="section-label-text">Hygiène &amp; soin</span><div class="section-label-line"></div></div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-teal">🛁</div><div class="item-text"><div class="item-name">Table à langer</div><div class="item-sub">Avec rebords de sécurité</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('table-langer','Table à langer')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-table-langer">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-teal">🧴</div><div class="item-text"><div class="item-name">Serviettes de bain à capuche</div><div class="item-sub">2 exemplaires</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('serviettes','Serviettes de bain à capuche')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-serviettes">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-teal">🧻</div><div class="item-text"><div class="item-name">Lingettes lavables réutilisables</div><div class="item-sub">Écologiques &amp; douces · lot de 20–30</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('lingettes','Lingettes lavables réutilisables')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-lingettes">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-teal">📋</div><div class="item-text"><div class="item-name">Protège-carnet de santé</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('carnet-sante','Protège-carnet de santé')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-carnet-sante">0 personne</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALIMENTATION -->
+  <div class="section">
+    <div class="section-label"><span class="section-label-text">Alimentation</span><div class="section-label-line"></div></div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-green">🍼</div><div class="item-text"><div class="item-name">Biberons Élhée</div><div class="item-sub">Silicone médical · 2–3 exemplaires</div></div></div>
+        <div class="item-note">Nous avons choisi les biberons Élhée en silicone médical car ils sont les seuls à être à la fois incassables, totalement sains et conçus pour préserver notre allaitement mixte durablement.</div>
+        <div class="item-footer">
+          <div class="tooltip-wrap">
+            <button class="btn-interested" onclick="openModal('biberons','Biberons Élhée')">Je suis intéressé(e) · voir le groupe</button>
+            <div class="tooltip-box">
+              <div class="tooltip-title">Pourquoi ce choix pour notre bébé ?</div>
+              <div class="tooltip-body">
+                <p>Pour accompagner notre allaitement mixte, nous avons porté notre choix sur les biberons Élhée. En silicone médical de haute qualité — une matière totalement saine, sans plastique, et incassable.</p>
+                <p style="margin-top:0.5rem;">Trois raisons qui nous tiennent à cœur :</p>
+                <ol>
+                  <li><strong>La santé</strong> — Aucune substance toxique ne migre dans le lait, même chauffé.</li>
+                  <li><strong>L'allaitement</strong> — La tétine physiologique imite la succion au sein et préserve l'attachement maternel.</li>
+                  <li><strong>La durabilité</strong> — Ils deviennent ensuite petits pots de conservation ou gourdes d'apprentissage.</li>
+                </ol>
+                <p style="margin-top:0.5rem;">Un investissement, mais un matériel sain qui nous accompagnera pendant des années.</p>
+              </div>
+              <div class="tooltip-arrow"></div>
+            </div>
+          </div>
+          <span class="counter-pill" id="c-biberons">0 personne</span>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-green">🌡️</div><div class="item-text"><div class="item-name">Chauffe-biberon</div><div class="item-sub">Compatible biberons ronds Élhée — vérifier la compatibilité avant l'achat</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('chauffe-biberon','Chauffe-biberon')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-chauffe-biberon">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-green">🧹</div><div class="item-text"><div class="item-name">Goupillon à biberon</div><div class="item-sub">Brosse de nettoyage</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('goupillon','Goupillon à biberon')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-goupillon">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-green">🥣</div><div class="item-text"><div class="item-name">Bavoirs</div><div class="item-sub">3 exemplaires</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('bavoirs','Bavoirs')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-bavoirs">0 personne</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COUCHES -->
+  <div class="section">
+    <div class="section-label"><span class="section-label-text">Couches &amp; entretien</span><div class="section-label-line"></div></div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-orange">🩲</div><div class="item-text"><div class="item-name">Couches — abonnement</div><div class="item-sub">Les Petits Culottés ou marque comparable · taille 1</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('couches','Couches — abonnement')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-couches">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-orange">🗑️</div><div class="item-text"><div class="item-name">Poubelle à couches</div><div class="item-sub">Avec neutralisation des odeurs</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('poubelle','Poubelle à couches')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-poubelle">0 personne</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VÊTEMENTS -->
+  <div class="section">
+    <div class="section-label"><span class="section-label-text">Vêtements &amp; bain</span><div class="section-label-line"></div></div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-gray">🧦</div><div class="item-text"><div class="item-name">Chaussettes</div><div class="item-sub">Tailles 0–1 mois et 1–3 mois</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('chaussettes','Chaussettes')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-chaussettes">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-gray">🧤</div><div class="item-text"><div class="item-name">Gants de naissance</div><div class="item-sub">Anti-griffures</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('gants','Gants de naissance')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-gants">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-gray">🎩</div><div class="item-text"><div class="item-name">Bonnet de naissance</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('bonnet','Bonnet de naissance')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-bonnet">0 personne</span></div>
+      </div>
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-blue">🏊</div><div class="item-text"><div class="item-name">Maillot de bain bébé</div><div class="item-sub">Papa et maman ont hâte d'emmener bébé à la piscine !</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('maillot','Maillot de bain bébé')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-maillot">0 personne</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SURVEILLANCE -->
+  <div class="section">
+    <div class="section-label"><span class="section-label-text">Surveillance</span><div class="section-label-line"></div></div>
+    <div class="items-grid">
+      <div class="item">
+        <div class="item-top"><div class="item-icon i-violet">💓</div><div class="item-text"><div class="item-name">Chaussette de surveillance du rythme cardiaque</div><div class="item-sub">Ex. Owlet Dream Sock</div></div></div>
+        <div class="item-footer"><button class="btn-interested" onclick="openModal('chaussette-cardio','Chaussette de surveillance')">Je suis intéressé(e) · voir le groupe</button><span class="counter-pill" id="c-chaussette-cardio">0 personne</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CADEAU UNIQUE -->
+  <div class="section">
+    <div class="section-label"><span class="section-label-text">Cadeau unique</span><div class="section-label-line"></div></div>
+    <div class="musique-card">
+      <div class="musique-title">Un livre de musique venu d'ailleurs</div>
+      <div class="musique-body">
+        Vous venez d'Italie, d'Espagne, ou d'un autre coin du monde ? Nous adorerions offrir à notre enfant des rythmes et des sonorités venus d'autres horizons. Un livre de chansons pour enfants de votre pays ou de votre culture — idéalement un livre sonore avec les mélodies intégrées, que bébé pourra écouter en tournant les pages — serait un cadeau absolument unique, quelque chose qu'on ne trouve dans aucune liste ordinaire.
+      </div>
+      <div class="musique-footer">
+        <button class="btn-interested" onclick="openModal('musique-ailleurs','Livre de musique venu d\'ailleurs')">Je suis intéressé(e) · voir le groupe</button>
+        <span class="counter-pill" id="c-musique-ailleurs">0 personne</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-subtitle">Laissez votre prénom et contact pour vous organiser avec d'autres.</div>
+    <div class="participants-section-title">Déjà intéressés</div>
+    <div class="participants-list" id="participants-list"></div>
+    <div class="form-group">
+      <label class="form-label">Votre prénom</label>
+      <input type="text" class="form-input" id="input-name" placeholder="Marie">
+    </div>
+    <div class="form-group">
+      <label class="form-label">E-mail ou téléphone</label>
+      <input type="text" class="form-input" id="input-contact" placeholder="marie@email.com ou 06 xx xx xx xx">
+      <div class="form-hint">Visible uniquement par les autres participants de ce cadeau.</div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeModal()">Fermer</button>
+      <button class="btn-primary" onclick="submitInterest()">Je suis intéressé(e)</button>
+    </div>
+    <div class="status-msg" id="status-msg"></div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getDatabase, ref, push, remove, onValue, get } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+
+  const firebaseConfig = {
+    apiKey:            "AIzaSyAIMdX3H28lHjF2djC3CSVanegF3J-MWds",
+    authDomain:        "liste-naissance-joanneomri.firebaseapp.com",
+    databaseURL:       "liste-naissance-joanneomri-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId:         "liste-naissance-joanneomri",
+    storageBucket:     "liste-naissance-joanneomri.firebasestorage.app",
+    messagingSenderId: "359769236216",
+    appId:             "1:359769236216:web:2cd8211a16b458b119110d"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db  = getDatabase(app);
+
+  // Compteurs temps réel
+  const allIds = [
+    'lit-cododo','reducteur-lit','lit-ange','chanceliere',
+    'mobile','tapis-eveil','hochet','livres-nb','livres-textures',
+    'doudou','coffre-bois','boite-musique',
+    'echarpe','porte-bebe',
+    'table-langer','serviettes','lingettes','carnet-sante',
+    'biberons','chauffe-biberon','goupillon','bavoirs',
+    'couches','poubelle',
+    'chaussettes','gants','bonnet','maillot',
+    'chaussette-cardio','musique-ailleurs'
+  ];
+
+  allIds.forEach(id => {
+    onValue(ref(db, 'interests/' + id), snap => {
+      const count = snap.val() ? Object.keys(snap.val()).length : 0;
+      const el = document.getElementById('c-' + id);
+      if (!el) return;
+      el.textContent = count === 0 ? '0 personne' : count === 1 ? '1 personne intéressée' : `${count} personnes intéressées`;
+      el.className   = 'counter-pill' + (count > 0 ? ' has-people' : '');
+    });
+  });
+
+  // Modal
+  let currentId = null;
+
+  window.openModal = function(id, name) {
+    currentId = id;
+    document.getElementById('modal-title').textContent = name;
+    document.getElementById('input-name').value        = '';
+    document.getElementById('input-contact').value     = '';
+    document.getElementById('status-msg').textContent  = '';
+    document.getElementById('status-msg').style.color  = 'var(--sage-dark)';
+    document.getElementById('modal-overlay').classList.add('open');
+    loadParticipants(id);
+  };
+
+  window.closeModal = function() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    currentId = null;
+  };
+
+  document.getElementById('modal-overlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  });
+
+  function loadParticipants(id) {
+    const listEl = document.getElementById('participants-list');
+    listEl.innerHTML = '<div class="participant-empty">Chargement…</div>';
+    get(ref(db, 'interests/' + id)).then(snap => {
+      const data = snap.val();
+      if (!data) {
+        listEl.innerHTML = '<div class="participant-empty">Soyez le premier à manifester votre intérêt !</div>';
+        return;
+      }
+      listEl.innerHTML = Object.entries(data).map(([key, e]) => `
+        <div class="participant-item">
+          <div class="participant-avatar">${(e.name||'?').substring(0,2).toUpperCase()}</div>
+          <div style="flex:1">
+            <div class="participant-name">${e.name||'Anonyme'}</div>
+            <div class="participant-contact">${e.contact||''}</div>
+          </div>
+          <button class="btn-delete-participant" onclick="deleteParticipant('${currentId}','${key}')" title="Retirer mon intérêt">✕</button>
+        </div>`).join('');
+    });
+  }
+
+  window.deleteParticipant = function(itemId, key) {
+    remove(ref(db, 'interests/' + itemId + '/' + key))
+      .then(() => loadParticipants(itemId));
+  };
+
+  window.submitInterest = function() {
+    const name     = document.getElementById('input-name').value.trim();
+    const contact  = document.getElementById('input-contact').value.trim();
+    const statusEl = document.getElementById('status-msg');
+    statusEl.style.color = 'var(--sage-dark)';
+
+    if (!name)    { statusEl.textContent = "Merci d'indiquer votre prénom.";         statusEl.style.color = '#c0392b'; return; }
+    if (!contact) { statusEl.textContent = "Merci d'indiquer votre e-mail ou tél."; statusEl.style.color = '#c0392b'; return; }
+
+    statusEl.textContent = 'Enregistrement…';
+    push(ref(db, 'interests/' + currentId), { name, contact, timestamp: Date.now() })
+      .then(() => {
+        statusEl.textContent = 'Merci ! Votre intérêt a bien été enregistré.';
+        document.getElementById('input-name').value    = '';
+        document.getElementById('input-contact').value = '';
+        loadParticipants(currentId);
+      })
+      .catch(() => {
+        statusEl.style.color  = '#c0392b';
+        statusEl.textContent  = 'Une erreur est survenue, réessayez.';
+      });
+  };
+</script>
+
+</body>
+</html>
