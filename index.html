@@ -166,13 +166,7 @@
     En cliquant sur <strong>« Participer à ce cadeau »</strong>, vous pouvez laisser votre prénom et contact et voir qui d'autre s'est déjà manifesté. Deux bonnes raisons de le faire : rejoindre d'autres personnes pour offrir un cadeau ensemble, ou simplement s'assurer qu'un cadeau n'est pas déjà plusieurs fois en route — on ne voudrait pas se retrouver avec une collection de goupillons !
   </div>
 
-  <div class="espece-card">
-    <div class="espece-title">Cadeau en espèces</div>
-    <div class="espece-body">
-      Un cadeau en espèces est le bienvenu — nous saurons très bien quoi en faire !<br>
-      Si vous souhaitez nous faire un virement, écrivez-nous et nous vous enverrons notre RIB avec plaisir.
-    </div>
-  </div>
+
 
   <!-- ÉVEIL & JEU -->
   <div class="section">
@@ -322,6 +316,12 @@
     </div>
   </div>
 
+  <div class="espece-card">
+    <div class="espece-title">Cadeau en espèces</div>
+    <div class="espece-body">
+      Un cadeau en espèces est le bienvenu — nous saurons très bien quoi en faire ! Si vous souhaitez nous faire un virement, écrivez-nous et nous vous enverrons notre RIB avec plaisir. Et pour les amateurs de l'enveloppe glissée discrètement, une petite boîte sera là le jour de la fête.
+    </div>
+  </div>
 
 </div>
 
@@ -397,7 +397,7 @@
 
   allIds.forEach(id => {
     const el = document.getElementById('c-' + id);
-    if (el) el.textContent = '';
+    if (el) { el.textContent = '🔄 chargement'; el.className = 'counter-pill'; }
   });
 
   allIds.forEach(id => {
