@@ -142,6 +142,8 @@
 </head>
 <body>
 
+<div id="live-region" aria-live="polite" role="status" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap"></div>
+
 <header class="page-header">
   <div class="header-eyebrow">Bienvenue dans notre famille</div>
   <h1 class="header-title">Notre liste de<br><em>naissance</em></h1>
@@ -173,15 +175,15 @@
     <div class="section-label"><span class="section-label-text">Éveil &amp; jeu</span><div class="section-label-line"></div></div>
     <div class="items-grid">
 <div class="item">
-        <div class="item-top"><div class="item-icon i-blue">🔔</div><div class="item-text"><div class="item-name">Hochet</div><div class="item-sub">Le jouet qui fait tout : bruit, couleur, et matraque</div></div></div>
+        <div class="item-top"><div class="item-icon i-blue" aria-hidden="true">🔔</div><div class="item-text"><div class="item-name">Hochet</div><div class="item-sub">Le jouet qui fait tout : bruit, couleur, et matraque</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('hochet','Hochet')">Participer à ce cadeau</button><span class="counter-pill" id="c-hochet">Aucun participant pour l'instant</span></div>
       </div>
       <div class="item">
-        <div class="item-top"><div class="item-icon i-blue">📖</div><div class="item-text"><div class="item-name">Livres noir &amp; blanc</div><div class="item-sub">Ses premiers livres, dans les seules couleurs qu'il voit vraiment<br>- idéalement 1 ou 2</div></div></div>
+        <div class="item-top"><div class="item-icon i-blue" aria-hidden="true">📖</div><div class="item-text"><div class="item-name">Livres noir &amp; blanc</div><div class="item-sub">Ses premiers livres, dans les seules couleurs qu'il voit vraiment<br>- idéalement 1 ou 2</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('livres-nb','Livres noir & blanc')">Participer à ce cadeau</button><span class="counter-pill" id="c-livres-nb">Aucun participant pour l'instant</span></div>
       </div>
       <div class="item">
-        <div class="item-top"><div class="item-icon i-blue">🗃️</div><div class="item-text"><div class="item-name">Coffre en bois</div><div class="item-sub">Pour dissimuler le chaos en toute lâcheté</div></div></div>
+        <div class="item-top"><div class="item-icon i-blue" aria-hidden="true">🗃️</div><div class="item-text"><div class="item-name">Coffre en bois</div><div class="item-sub">Pour dissimuler le chaos en toute lâcheté</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('coffre-bois','Coffre en bois')">Participer à ce cadeau</button><span class="counter-pill" id="c-coffre-bois">Aucun participant pour l'instant</span></div>
       </div>
     </div>
@@ -192,7 +194,7 @@
     <div class="section-label"><span class="section-label-text">Portage &amp; mobilité</span><div class="section-label-line"></div></div>
     <div class="items-grid">
       <div class="item">
-        <div class="item-top"><div class="item-icon i-rose">🦺</div><div class="item-text"><div class="item-name">Porte-bébé ergonomique</div><div class="item-sub">Le préféré de papa — solide, structuré, et parfait pour les longues sorties et les bras fatigués</div></div></div>
+        <div class="item-top"><div class="item-icon i-rose" aria-hidden="true">🦺</div><div class="item-text"><div class="item-name">Porte-bébé ergonomique</div><div class="item-sub">Le préféré de papa — solide, structuré, et parfait pour les longues sorties et les bras fatigués</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('porte-bebe','Porte-bébé ergonomique')">Participer à ce cadeau</button><span class="counter-pill" id="c-porte-bebe">Aucun participant pour l'instant</span></div>
       </div>
     </div>
@@ -203,15 +205,15 @@
     <div class="section-label"><span class="section-label-text">Hygiène &amp; soin</span><div class="section-label-line"></div></div>
     <div class="items-grid">
       <div class="item">
-        <div class="item-top"><div class="item-icon i-teal">🛁</div><div class="item-text"><div class="item-name">Matelas à langer</div><div class="item-sub">L'inévitable arrêt au stand pour bébé pilote</div></div></div>
+        <div class="item-top"><div class="item-icon i-teal" aria-hidden="true">🛁</div><div class="item-text"><div class="item-name">Matelas à langer</div><div class="item-sub">L'inévitable arrêt au stand pour bébé pilote</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('matelas-langer','Matelas à langer')">Participer à ce cadeau</button><span class="counter-pill" id="c-matelas-langer">Aucun participant pour l'instant</span></div>
       </div>
       <div class="item">
-        <div class="item-top"><div class="item-icon i-teal">🧻</div><div class="item-text"><div class="item-name">Lingettes lavables réutilisables</div><div class="item-sub">Douces pour bébé, douces pour la planète<br>- lot de 20–30</div></div></div>
+        <div class="item-top"><div class="item-icon i-teal" aria-hidden="true">🧻</div><div class="item-text"><div class="item-name">Lingettes lavables réutilisables</div><div class="item-sub">Douces pour bébé, douces pour la planète<br>- lot de 20–30</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('lingettes','Lingettes lavables réutilisables')">Participer à ce cadeau</button><span class="counter-pill" id="c-lingettes">Aucun participant pour l'instant</span></div>
       </div>
       <div class="item">
-        <div class="item-top"><div class="item-icon i-orange">🗑️</div><div class="item-text"><div class="item-name">Poubelle à couches</div><div class="item-sub">Parce que certains cadeaux sont plus utiles que poétiques</div></div></div>
+        <div class="item-top"><div class="item-icon i-orange" aria-hidden="true">🗑️</div><div class="item-text"><div class="item-name">Poubelle à couches</div><div class="item-sub">Parce que certains cadeaux sont plus utiles que poétiques</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('poubelle','Poubelle à couches')">Participer à ce cadeau</button><span class="counter-pill" id="c-poubelle">Aucun participant pour l'instant</span></div>
       </div>
     </div>
@@ -222,13 +224,13 @@
     <div class="section-label"><span class="section-label-text">Alimentation</span><div class="section-label-line"></div></div>
     <div class="items-grid">
       <div class="item">
-        <div class="item-top"><div class="item-icon i-green">🍼</div><div class="item-text"><div class="item-name">Biberons Élhée ou comparable</div><div class="item-sub">Faits en France, en silicone pour éviter le plastique et slow-flow pour que ça ne soit pas trop facile et que bébé ne dédaigne pas l'allaitement par flemme. Convertibles en petits pots après, jackpot !</div></div></div>        <div class="item-footer">
+        <div class="item-top"><div class="item-icon i-green" aria-hidden="true">🍼</div><div class="item-text"><div class="item-name">Biberons Élhée ou comparable</div><div class="item-sub">Faits en France, en silicone pour éviter le plastique et slow-flow pour que ça ne soit pas trop facile et que bébé ne dédaigne pas l'allaitement par flemme. Convertibles en petits pots après, jackpot !</div></div></div>        <div class="item-footer">
           <button class="btn-interested" onclick="openModal('biberons','Biberons Élhée')">Participer à ce cadeau</button>
           <span class="counter-pill" id="c-biberons">Aucun participant pour l'instant</span>
         </div>
       </div>
       <div class="item">
-        <div class="item-top"><div class="item-icon i-green">🌡️</div><div class="item-text"><div class="item-name">Chauffe-biberon</div><div class="item-sub">Compatible biberons ronds Élhée</div></div></div>
+        <div class="item-top"><div class="item-icon i-green" aria-hidden="true">🌡️</div><div class="item-text"><div class="item-name">Chauffe-biberon</div><div class="item-sub">Compatible biberons ronds Élhée</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('chauffe-biberon','Chauffe-biberon')">Participer à ce cadeau</button><span class="counter-pill" id="c-chauffe-biberon">Aucun participant pour l'instant</span></div>
       </div>
     </div>
@@ -239,31 +241,31 @@
     <div class="section-label"><span class="section-label-text">Vêtements &amp; bain</span><div class="section-label-line"></div></div>
     <div class="items-grid">
       <div class="item">
-        <div class="item-top"><div class="item-icon i-violet">🪺</div><div class="item-text"><div class="item-name">Nid d'ange</div><div class="item-sub">Pour les déplacements et sorties</div></div></div>
+        <div class="item-top"><div class="item-icon i-violet" aria-hidden="true">🪺</div><div class="item-text"><div class="item-name">Nid d'ange</div><div class="item-sub">Pour les déplacements et sorties</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('lit-ange','Nid d\'ange')">Participer à ce cadeau</button><span class="counter-pill" id="c-lit-ange">Aucun participant pour l'instant</span></div>
       </div>
       <div class="item">
-        <div class="item-top"><div class="item-icon i-teal">🧴</div><div class="item-text"><div class="item-name">Serviettes de bain à capuche</div><div class="item-sub">Faites du bruit pour Conor McGregor/Ronda Rousey sortant du bain !</div></div></div>
+        <div class="item-top"><div class="item-icon i-teal" aria-hidden="true">🧴</div><div class="item-text"><div class="item-name">Serviettes de bain à capuche</div><div class="item-sub">Faites du bruit pour Conor McGregor/Ronda Rousey sortant du bain !</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('serviettes','Serviettes de bain à capuche')">Participer à ce cadeau</button><span class="counter-pill" id="c-serviettes">Aucun participant pour l'instant</span></div>
       </div>
       <div class="item">
-        <div class="item-top"><div class="item-icon i-gray">🧦</div><div class="item-text"><div class="item-name">Chaussettes 0–1 mois</div><div class="item-sub">3 paires parce que bébé pourrait déjà naître en taille supérieure</div></div></div>
+        <div class="item-top"><div class="item-icon i-gray" aria-hidden="true">🧦</div><div class="item-text"><div class="item-name">Chaussettes 0–1 mois</div><div class="item-sub">3 paires parce que bébé pourrait déjà naître en taille supérieure</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('chaussettes-0-1','Chaussettes 0–1 mois')">Participer à ce cadeau</button><span class="counter-pill" id="c-chaussettes-0-1">Aucun participant pour l'instant</span></div>
       </div>
       <div class="item">
-        <div class="item-top"><div class="item-icon i-gray">🧦</div><div class="item-text"><div class="item-name">Chaussettes 1–3 mois</div><div class="item-sub">Ses premiers pas dans la douceur<br>- 7 exemplaires</div></div></div>
+        <div class="item-top"><div class="item-icon i-gray" aria-hidden="true">🧦</div><div class="item-text"><div class="item-name">Chaussettes 1–3 mois</div><div class="item-sub">Ses premiers pas dans la douceur<br>- 7 exemplaires</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('chaussettes-1-3','Chaussettes 1–3 mois')">Participer à ce cadeau</button><span class="counter-pill" id="c-chaussettes-1-3">Aucun participant pour l'instant</span></div>
       </div>
       <div class="item">
-        <div class="item-top"><div class="item-icon i-gray">🧤</div><div class="item-text"><div class="item-name">Gants de naissance</div><div class="item-sub">Les menottes les plus mignonnes du monde</div></div></div>
+        <div class="item-top"><div class="item-icon i-gray" aria-hidden="true">🧤</div><div class="item-text"><div class="item-name">Gants de naissance</div><div class="item-sub">Les menottes les plus mignonnes du monde</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('gants','Gants de naissance')">Participer à ce cadeau</button><span class="counter-pill" id="c-gants">Aucun participant pour l'instant</span></div>
       </div>
       <div class="item">
-        <div class="item-top"><div class="item-icon i-gray">🎩</div><div class="item-text"><div class="item-name">Bonnet de naissance</div><div class="item-sub">Après 9 mois bien au chaud, bébé va se cailler les miches sous nos latitudes</div></div></div>
+        <div class="item-top"><div class="item-icon i-gray" aria-hidden="true">🎩</div><div class="item-text"><div class="item-name">Bonnet de naissance</div><div class="item-sub">Après 9 mois bien au chaud, bébé va se cailler les miches sous nos latitudes</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('bonnet','Bonnet de naissance')">Participer à ce cadeau</button><span class="counter-pill" id="c-bonnet">Aucun participant pour l'instant</span></div>
       </div>
       <div class="item">
-        <div class="item-top"><div class="item-icon i-rose">🧶</div><div class="item-text"><div class="item-name">Layette</div><div class="item-sub">Le crochet, tricot et autre n'ont pas de secret pour vous ? À vos aiguilles ! En taille naissance, on est blindé, mais pour la suite, on compte sur vous !</div></div></div>
+        <div class="item-top"><div class="item-icon i-rose" aria-hidden="true">🧶</div><div class="item-text"><div class="item-name">Layette</div><div class="item-sub">Le crochet, tricot et autre n'ont pas de secret pour vous ? À vos aiguilles ! En taille naissance, on est blindé, mais pour la suite, on compte sur vous !</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('layette','Layette')">Participer à ce cadeau</button><span class="counter-pill" id="c-layette">Aucun participant pour l'instant</span></div>
       </div>
     </div>
@@ -274,7 +276,7 @@
     <div class="section-label"><span class="section-label-text">Surveillance</span><div class="section-label-line"></div></div>
     <div class="items-grid">
       <div class="item">
-        <div class="item-top"><div class="item-icon i-violet">💓</div><div class="item-text"><div class="item-name">Veilleur de nuit — Nanny Care BM-03</div><div class="item-sub">Le gadget qui veille quand les parents s'endorment</div></div></div>
+        <div class="item-top"><div class="item-icon i-violet" aria-hidden="true">💓</div><div class="item-text"><div class="item-name">Veilleur de nuit — Nanny Care BM-03</div><div class="item-sub">Le gadget qui veille quand les parents s'endorment</div></div></div>
         <div class="item-footer"><button class="btn-interested" onclick="openModal('chaussette-cardio','Chaussette de surveillance')">Participer à ce cadeau</button><span class="counter-pill" id="c-chaussette-cardio">Aucun participant pour l'instant</span></div>
       </div>
     </div>
@@ -304,7 +306,7 @@
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
-  <div class="modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-title" id="modal-title"></div>
     <div class="modal-subtitle">Laissez votre prénom et contact pour vous organiser avec d'autres.</div>
     <div class="participants-section-title">Déjà intéressés</div>
@@ -364,8 +366,14 @@
     if (el) { el.textContent = '🔄 chargement'; el.className = 'counter-pill'; }
   });
 
+  let loadAnnounced = false;
+
   allIds.forEach(id => {
     onValue(ref(db, 'interests/' + id), snap => {
+      if (!loadAnnounced) {
+        loadAnnounced = true;
+        document.getElementById('live-region').textContent = 'Liste des cadeaux chargée';
+      }
       const count = snap.val() ? Object.keys(snap.val()).length : 0;
       const el = document.getElementById('c-' + id);
       if (!el) return;
@@ -380,9 +388,12 @@
   });
 
   // Modal
-  let currentId = null;
+  let currentId        = null;
+  let modalOpener      = null;
+  let trapFocusHandler = null;
 
   window.openModal = function(id, name) {
+    modalOpener = document.activeElement;
     currentId = id;
     document.getElementById('modal-title').textContent = name;
     document.getElementById('input-name').value        = '';
@@ -393,11 +404,34 @@
     document.getElementById('input-message').value = '';
     loadParticipants(id);
     document.getElementById('input-name').focus();
+
+    const modal = document.querySelector('#modal-overlay .modal');
+    trapFocusHandler = function(e) {
+      if (e.key !== 'Tab') return;
+      const focusable = Array.from(
+        modal.querySelectorAll('button:not([disabled]), input, textarea, [tabindex]:not([tabindex="-1"])')
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last  = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+      }
+    };
+    modal.addEventListener('keydown', trapFocusHandler);
   };
 
   window.closeModal = function() {
+    const modal = document.querySelector('#modal-overlay .modal');
+    if (trapFocusHandler) {
+      modal.removeEventListener('keydown', trapFocusHandler);
+      trapFocusHandler = null;
+    }
     document.getElementById('modal-overlay').classList.remove('open');
     currentId = null;
+    if (modalOpener) { modalOpener.focus(); modalOpener = null; }
   };
 
   document.getElementById('modal-overlay').addEventListener('click', e => {
@@ -408,6 +442,15 @@
     if (e.key === 'Escape' && document.getElementById('modal-overlay').classList.contains('open')) closeModal();
   });
 
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   function loadParticipants(id) {
     const listEl = document.getElementById('participants-list');
     listEl.innerHTML = '<div class="participant-empty">Chargement…</div>';
@@ -417,16 +460,24 @@
         listEl.innerHTML = '<div class="participant-empty">Soyez le premier à manifester votre intérêt !</div>';
         return;
       }
-      listEl.innerHTML = Object.entries(data).map(([key, e]) => `
+      listEl.innerHTML = Object.entries(data).map(([key, e]) => {
+        const name    = escHtml(e.name    || 'Anonyme');
+        const contact = escHtml(e.contact || '');
+        const message = e.message ? escHtml(e.message) : '';
+        const initials = escHtml((e.name || '?').substring(0, 2).toUpperCase());
+        const safeId  = escHtml(currentId);
+        const safeKey = escHtml(key);
+        return `
         <div class="participant-item">
-          <div class="participant-avatar">${(e.name||'?').substring(0,2).toUpperCase()}</div>
+          <div class="participant-avatar">${initials}</div>
           <div style="flex:1">
-            <div class="participant-name">${e.name||'Anonyme'}</div>
-            <div class="participant-contact">${e.contact||''}</div>
-            ${e.message ? `<div style="font-size:11px;font-style:italic;color:var(--text-muted)">${e.message}</div>` : ''}
+            <div class="participant-name">${name}</div>
+            <div class="participant-contact">${contact}</div>
+            ${message ? `<div style="font-size:11px;font-style:italic;color:var(--text-muted)">${message}</div>` : ''}
           </div>
-          <button class="btn-delete-participant" onclick="deleteParticipant('${currentId}','${key}')" title="Retirer mon intérêt">✕</button>
-        </div>`).join('');
+          <button class="btn-delete-participant" onclick="deleteParticipant('${safeId}','${safeKey}')" title="Retirer mon intérêt">✕</button>
+        </div>`;
+      }).join('');
     });
   }
 
